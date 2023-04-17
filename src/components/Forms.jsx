@@ -7,7 +7,7 @@ import { HiOutlineMail } from "react-icons/hi";
 import { BsInstagram, BsClockHistory } from "react-icons/bs";
 
 function FormsContactUs() {
-  const [name, setName] = useState('');
+  const [name, setName] = useState(undefined);
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
 
@@ -27,6 +27,8 @@ function FormsContactUs() {
   };
 
   const onClickSendMessage = (e) => {
+    if(name != '' && name != null && name != undefined && email != '' && email != null && email != undefined && message != '' && message != null && message != undefined){
+      console.log('entre')
     emailjs
       .sendForm(
         "service_2w9fzk9",
@@ -43,46 +45,16 @@ function FormsContactUs() {
           console.log(error.text);
         }
       );
-
-    // emailjs.send("service_2w9fzk9","template_cm9lvkm",{
-    //   message: message,
-    //   user_name: name,
-    //   user_email: email,
-    //   });
-  };
-  const sendEmail = (e) => {
-    e.preventDefault();
-
-    if(name != '' && name != null ){
-      console.log('entre')
-      emailjs
-      .sendForm(
-        "service_2w9fzk9",
-        "template_cm9lvkm",
-        form.current,
-        "SlsWoeDcMZqT7iJTe"
-      )
-      .then(
-        (result) => {
-          alert("Su mensaje ha sido enviado");
-          console.log(name)
-          console.log(message)
-          console.log(email)
-          console.log(result.text);
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
-    }else{
-      console.log('no entre')
+    } else{
+      alert('Cheque que todos los campos esten completos.')
     }
+
   };
 
   return (
     <>
       <div className="contact-us-container">
-        <form ref={form} onSubmit={sendEmail} id="contact-us-form">
+        <form ref={form}  id="contact-us-form">
           <h1>Contáctanos</h1>
           <p>
             No dude en ponerse en contacto con nosotros. Le responderemos lo
