@@ -240,6 +240,14 @@ hr {
     left: calc(100vw - 42%);
     
   }
+
+  #phone {
+    width: 280px;
+    
+    left: 350px;
+    top: 1750px;
+    transform: rotate(12deg);
+  }
 }
 
 @media screen and (min-width: 901px) and (max-width: 1400px) {
